@@ -1,26 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Header from './components/Header'
+import Finder from './components/Finder'
+import Pokedex from './components/Pokedex'
+import axios from 'axios'
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      caughtPokemon: [],
+    }
+    this.catchPokemon = this.catchPokemon.bind(this)
+    this.saveName = this.saveName.bind(this)
+    this.releasePokemon = this.releasePokemon.bind(this)
+  }
+
+  componentDidMount() {
+    axios.get('/api/pokemon').then((res) => {
+      this.setState({
+        caughtPokemon: res.data,
+      })
+    })
+  }
+
+  catchPokemon(name, image) {
+    const body = {name, image}
+    axios.post('/axios/pokemon', body).then(res => {
+      this.setState({
+        caughtPokemon: res.data
+      })
+    })
+  }
+
+  saveName(id, newName) {
+    const body = {newName}
+
+    axios.put(`/api/pokemon'/${id}`, body).then(res => {
+      this.setState({
+        caughtPokemon: res.data
+      })
+    })
+  }
+
+  releasePokemon(id) {
+    axios.delete(`/api/pokemon/${id}`).then(res=> {
+      this.setState({
+        caughtPokemon: res.data
+      })
+    })
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        App.js
+        <Finder catchPokemon={this.catchPokemon} />
+        <Pokedex
+          caughtPokemon={this.state.caughtPokemon}
+          saveName={this.saveName}
+          releasePokemon={this.releasePokemon}
+        />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App

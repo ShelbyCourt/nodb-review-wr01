@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
@@ -32,5 +33,18 @@
     ]
   },
   "main": "server/index.js",
-  "proxy": "http://localhost:4232"
+  "proxy": "http://localhost:4232",
+  "description": "- This is a pokemon catching app\r - We will be utilizing the pokeAPI for the pokemon data\r - Full CRUD\r     - GET: get all pokemon\r     - POST: Caught pokemon will be posted to our array\r     - PUT: Give the pokemon a name\r     - Delete: Release our pokemon back into the wild",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShelbyCourt/nodb-review-wr01.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShelbyCourt/nodb-review-wr01/issues"
+  },
+  "homepage": "https://github.com/ShelbyCourt/nodb-review-wr01#readme"
 }
